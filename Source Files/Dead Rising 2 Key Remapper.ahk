@@ -21,6 +21,8 @@ tab = tab
 				Fileselectfolder,gamepath
 				ifnotexist,%gamepath%/deadrising2.exe
 				{
+					if gamepath =
+						exitapp
 					msgbox, Error: Deadrising2.exe doesn't exist in this folder. Are you sure its here?
 					goto selectgamepath
 				}
