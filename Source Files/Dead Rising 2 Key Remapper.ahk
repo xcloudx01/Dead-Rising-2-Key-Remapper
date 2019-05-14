@@ -1,7 +1,8 @@
 ;By xcloudx01 - 2010
+Fileinstall,AutoHotKey-KeysList.pdf,%A_Temp%\AutoHotKey-KeysList.pdf
+OnExit("ExitFunc")
 
 #SINGLEINSTANCE FORCE
-tab = tab
 ;Check if we already know where DR2 is installed.
 	ifnotexist,Settings.ini
 		{
@@ -32,135 +33,110 @@ tab = tab
 		else
 			iniread,gamepath,Settings.ini,Settings,gamepath
 
-;Figure out what the keys currently are
-	tab := Getbind(1)
-	f1 := Getbind(3)
-	w := Getbind(4)
-	s := Getbind(5)
-	a := Getbind(6)
-	d := Getbind(7)
-	enter := Getbind(8)
-	esc := Getbind(9)
-	lshift := Getbind(10)
-	lcontrol := Getbind(11)
-	up := Getbind(15)
-	down := Getbind(16)
-	left := Getbind(17)
-	right := Getbind(18)
-	x := Getbind(22)
-	c := Getbind(23)
-	1 := Getbind(24)
-	2 := Getbind(25)
-	3 := Getbind(26)
-	4 := Getbind(27)
-	q := Getbind(30)
-	h := Getbind(35)
-	equals := Getbind(40)
-	minus := Getbind(41)
-	z := Getbind(44)
-	space := Getbind(45)
-	m := Getbind(46)
-	e := Getbind(49)
-	t := Getbind(63)
-
-;GUI	
-	Gui, Add, Edit, x104 y60 w70 h20 vtab uppercase, %tab%
-	Gui, Add, Edit, x104 y80 w70 h20 vf1 uppercase, %f1%
-	Gui, Add, Edit, x104 y100 w70 h20 vw uppercase, %w%
-	Gui, Add, Edit, x104 y120 w70 h20 va uppercase, %a%
-	Gui, Add, Edit, x104 y140 w70 h20 vs uppercase, %s%
-	Gui, Add, Edit, x104 y160 w70 h20 vd uppercase, %d%
-	Gui, Add, Edit, x104 y180 w70 h20 vlcontrol uppercase, %lcontrol%
-	Gui, Add, Edit, x104 y200 w70 h20 vlshift uppercase, %lshift%
-	Gui, Add, Edit, x104 y220 w70 h20 vup uppercase, %up%
-	Gui, Add, Edit, x104 y240 w70 h20 vdown uppercase, %down%
-	Gui, Add, Edit, x104 y260 w70 h20 vleft uppercase, %left%
-	Gui, Add, Edit, x104 y280 w70 h20 vright uppercase, %right%
-	Gui, Add, Edit, x266 y60 w70 h20 vesc uppercase, %esc%
-	Gui, Add, Edit, x266 y80 w70 h20 venter uppercase, %enter%
-	Gui, Add, Edit, x266 y100 w70 h20 vx uppercase, %x%
-	Gui, Add, Edit, x266 y120 w70 h20 vc uppercase, %c%
-	Gui, Add, Edit, x266 y140 w70 h20 v1 uppercase, %1%
-	Gui, Add, Edit, x266 y160 w70 h20 v2 uppercase, %2%
-	Gui, Add, Edit, x266 y180 w70 h20 v3 uppercase, %3%
-	Gui, Add, Edit, x266 y200 w70 h20 v4 uppercase, %4%
-	Gui, Add, Edit, x266 y220 w70 h20 vq uppercase, %q%
-	Gui, Add, Edit, x266 y240 w70 h20 vh uppercase, %h%
-	Gui, Add, Edit, x266 y260 w70 h20 vequals uppercase, %equals%
-	Gui, Add, Edit, x266 y280 w70 h20 vminus uppercase, %minus%
-	Gui, Add, Edit, x416 y120 w70 h20 vz uppercase, %z%
-	Gui, Add, Edit, x416 y140 w70 h20 vspace uppercase, %space%
-	Gui, Add, Edit, x416 y160 w70 h20 vm uppercase, %m%
-	Gui, Add, Edit, x416 y180 w70 h20 ve uppercase, %e%
-	Gui, Add, Edit, x416 y200 w70 h20 vt uppercase, %t%
+;GUI
+	Gui, Add, Edit, x104 y60 w70 h20 vtab uppercase, % Getbind(1)
+	Gui, Add, Edit, x104 y80 w70 h20 vf1 uppercase, % Getbind(3)
+	Gui, Add, Edit, x104 y100 w70 h20 vw uppercase, % Getbind(4)
+	Gui, Add, Edit, x104 y120 w70 h20 va uppercase, % Getbind(6)
+	Gui, Add, Edit, x104 y140 w70 h20 vs uppercase, % Getbind(5)
+	Gui, Add, Edit, x104 y160 w70 h20 vd uppercase, % Getbind(7)
+	Gui, Add, Edit, x104 y180 w70 h20 vlcontrol uppercase, % Getbind(11)
+	Gui, Add, Edit, x104 y200 w70 h20 vlshift uppercase, % Getbind(10)
+	Gui, Add, Edit, x104 y220 w70 h20 vup uppercase, % Getbind(15)
+	Gui, Add, Edit, x104 y240 w70 h20 vdown uppercase, % Getbind(16)
+	Gui, Add, Edit, x104 y260 w70 h20 vleft uppercase, % Getbind(17)
+	Gui, Add, Edit, x104 y280 w70 h20 vright uppercase, % Getbind(18)
+	Gui, Add, Edit, x266 y60 w70 h20 vesc uppercase, % Getbind(9)
+	Gui, Add, Edit, x266 y80 w70 h20 venter uppercase, % Getbind(8)
+	Gui, Add, Edit, x266 y100 w70 h20 vx uppercase, % Getbind(22)
+	Gui, Add, Edit, x266 y120 w70 h20 vc uppercase, % Getbind(23)
+	Gui, Add, Edit, x266 y140 w70 h20 v1 uppercase, % Getbind(24)
+	Gui, Add, Edit, x266 y160 w70 h20 v2 uppercase, % Getbind(25)
+	Gui, Add, Edit, x266 y180 w70 h20 v3 uppercase, % Getbind(26)
+	Gui, Add, Edit, x266 y200 w70 h20 v4 uppercase, % Getbind(27)
+	Gui, Add, Edit, x266 y220 w70 h20 vq uppercase, % Getbind(30)
+	Gui, Add, Edit, x266 y240 w70 h20 vh uppercase, % Getbind(35)
+	Gui, Add, Edit, x266 y260 w70 h20 vequals uppercase, % Getbind(40)
+	Gui, Add, Edit, x266 y280 w70 h20 vminus uppercase, % Getbind(41)
+	Gui, Add, Edit, x416 y120 w70 h20 vz uppercase, % Getbind(44)
+	Gui, Add, Edit, x416 y140 w70 h20 vspace uppercase, % Getbind(45)
+	Gui, Add, Edit, x416 y160 w70 h20 vm uppercase, % Getbind(46)
+	Gui, Add, Edit, x416 y180 w70 h20 ve uppercase, % Getbind(49)
+	Gui, Add, Edit, x416 y200 w70 h20 vt uppercase, % Getbind(63)
 	Gui, Add, Button, x236 y310 w100 h20 gSubmit, Save
 	Gui, Add, Button, x26 y310 w100 h20 gDefaults, Restore Defaults
 	Gui, Add, Text, x26 y60 w70 h20 , Map
-	Gui, Add, Text, x26 y80 w70 h20 , ?F1
+	Gui, Add, Text, x26 y80 w70 h20 , F1
 	Gui, Add, Text, x26 y100 w70 h20 , Forward
 	Gui, Add, Text, x26 y120 w70 h20 , Left
 	Gui, Add, Text, x26 y140 w70 h20 , Back
 	Gui, Add, Text, x26 y160 w70 h20 , Right
 	Gui, Add, Text, x26 y180 w70 h20 , Control
 	Gui, Add, Text, x26 y200 w70 h20 , Shift
-	Gui, Add, Text, x26 y220 w70 h20 , ?Menu up
-	Gui, Add, Text, x26 y240 w70 h20 , ?Menu down
-	Gui, Add, Text, x26 y260 w70 h20 , ?Menu left
-	Gui, Add, Text, x26 y280 w70 h20 , ?Menu right
-	Gui, Add, Text, x186 y60 w70 h20 , ?Pause
-	Gui, Add, Text, x186 y80 w70 h20 , ?Select
+	Gui, Add, Text, x26 y220 w70 h20 , Menu up
+	Gui, Add, Text, x26 y240 w70 h20 , Menu down
+	Gui, Add, Text, x26 y260 w70 h20 , Menu left
+	Gui, Add, Text, x26 y280 w70 h20 , Menu right
+	Gui, Add, Text, x186 y60 w70 h20 , Pause
+	Gui, Add, Text, x186 y80 w70 h20 , Select
 	Gui, Add, Text, x186 y100 w70 h20 , Drop Item
 	Gui, Add, Text, x186 y120 w70 h20 , Answer Call
 	Gui, Add, Text, x186 y140 w70 h20 , Inv left
 	Gui, Add, Text, x186 y160 w70 h20 , Pocket Item
 	Gui, Add, Text, x186 y180 w70 h20 , Inv right
-	Gui, Add, Text, x186 y200 w70 h20 , ?Inv slot 4
+	Gui, Add, Text, x186 y200 w70 h20 , Inv slot 4
 	Gui, Add, Text, x186 y220 w80 h20 , Call/Quit poker
 	Gui, Add, Text, x186 y240 w70 h20 , Help
-	Gui, Add, Text, x186 y260 w70 h20 , ?Zoom in map
-	Gui, Add, Text, x186 y280 w70 h20 , ?Zoom out map
-	Gui, Add, Text, x346 y120 w70 h20 , ?z
+	Gui, Add, Text, x186 y260 w70 h20 , Zoom in map
+	Gui, Add, Text, x186 y280 w70 h20 , Zoom out map
+	Gui, Add, Text, x346 y120 w70 h20 , Z
 	Gui, Add, Text, x346 y140 w70 h20 , Jump
 	Gui, Add, Text, x346 y160 w70 h20 , Map
 	Gui, Add, Text, x346 y180 w70 h20 , Interact
 	Gui, Add, Text, x346 y200 w70 h20 , Watch
-	Gui, Add, Text, x26 y340 w480 h20 , Special keys must be WRITTEN. ie: ENTER`, LCONTROL`, TAB`, NUMPAD2, MINUS`, EQUALS
+	Gui, Add, Text, x26 y340 w480 h20 , Special keys must be WRITTEN.
+	Gui, Add, Button, x190 y335 w25 h20 gKeysHelp, ?
 	Gui, Font, S15 CDefault Bold, Verdana
 	Gui, Add, Text, x116 y10 w320 h30 , Dead Rising 2 Key mapper
 	Gui, Show, x650 y390 h368 w510, Dead Rising 2 Key mapper
 	Return
-	
+
+	KeysHelp:
+		run, %A_Temp%\AutoHotKey-KeysList.pdf
+	return
+
 ;GUI Button Functions
 	Defaults:
-		controlgui(tab)
-		controlgui(f1)
-		controlgui(w)
-		controlgui(s)
-		controlgui(a)
-		controlgui(d)
-		controlgui(enter)
-		controlgui(esc)
-		controlgui(lshift)
-		controlgui(lcontrol)
-		controlgui(up)
-		controlgui(down)
-		controlgui(left)
-		controlgui(right)
-		controlgui(x)
-		controlgui(c)
-		controlgui(1)
-		controlgui(2)
-		controlgui(3)
-		controlgui(4)
-		controlgui(q)
-		controlgui(h)
-		controlgui(equals)
-		controlgui(minus)
-		controlgui(z)
-		controlgui(space)
-		controlgui(m)
-		controlgui(e)
-		controlgui(t)
+		controlgui("tab")
+		controlgui("f1")
+		controlgui("w")
+		controlgui("s")
+		controlgui("a")
+		controlgui("d")
+		controlgui("enter")
+		controlgui("esc")
+		controlgui("lshift")
+		controlgui("lcontrol")
+		controlgui("up")
+		controlgui("down")
+		controlgui("left")
+		controlgui("right")
+		controlgui("x")
+		controlgui("c")
+		controlgui("1")
+		controlgui("2")
+		controlgui("3")
+		controlgui("4")
+		controlgui("q")
+		controlgui("h")
+		controlgui("equals")
+		controlgui("minus")
+		controlgui("z")
+		controlgui("space")
+		controlgui("m")
+		controlgui("e")
+		controlgui("t")
+		gosub,Submit
 		return
 
 	GuiClose:
@@ -172,13 +148,13 @@ tab = tab
 		FileAppend,
 		(
 		COMMAND_FRONTEND_PAUSEMENU(                        KEY_%tab%,                PRESSED,        KEY_%lshift%,        HELD,            AND)
-		COMMAND_PAUSEMENU(                                KEY_%tab%,                PRESSED,        KEY_%lshift%,        HELD,             AND)    
+		COMMAND_PAUSEMENU(                                KEY_%tab%,                PRESSED,        KEY_%lshift%,        HELD,             AND)
 		COMMAND_OLD_PAUSEMENU(                            KEY_%f1%,                    PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_PAUSEMENU_UP(                            KEY_%w%,                    PRESSED,        KEY_%up%,            PRESSED,        OR)
-		COMMAND_PAUSEMENU_DOWN(                            KEY_%s%,                    PRESSED,        KEY_%down%,        PRESSED,        OR) 
+		COMMAND_PAUSEMENU_DOWN(                            KEY_%s%,                    PRESSED,        KEY_%down%,        PRESSED,        OR)
 		COMMAND_PAUSEMENU_LEFT(                            KEY_%a%,                    PRESSED,        KEY_%left%,        PRESSED,        OR)
-		COMMAND_PAUSEMENU_RIGHT(                        KEY_%d%,                    PRESSED,        KEY_%right%,        PRESSED,        OR) 
-		COMMAND_PAUSEMENU_SELECT(                        KEY_%enter%,                PRESSED,        NONE,            NONE,            NONE) 
+		COMMAND_PAUSEMENU_RIGHT(                        KEY_%d%,                    PRESSED,        KEY_%right%,        PRESSED,        OR)
+		COMMAND_PAUSEMENU_SELECT(                        KEY_%enter%,                PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_PAUSEMENU_BACK(                            KEY_%esc%,                PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_PAUSEMENU_FAST(                            KEY_%lshift%,                HELD,            NONE,            NONE,            NONE)
 		COMMAND_PAUSEMENU_SLOW(                            KEY_%lcontrol%,            HELD,            NONE,            NONE,            NONE)
@@ -202,7 +178,7 @@ tab = tab
 
 		COMMAND_PLAYER_DISMISS_DIALOG(                    KEY_%q%,                    PRESSED,        NONE,            NONE,            NONE)
 
-		COMMAND_FRONTEND_RIGHT_HELD(                    KEY_%c%,                    HELD,            NONE,            NONE,            NONE) 
+		COMMAND_FRONTEND_RIGHT_HELD(                    KEY_%c%,                    HELD,            NONE,            NONE,            NONE)
 
 		COMMAND_HIGHROLLERS_POKER_QUIT(                    KEY_%q%,                    PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_HIGHROLLERS_POKER_TIPS(                    KEY_%h%,                    PRESSED,        NONE,            NONE,            NONE)
@@ -229,7 +205,7 @@ tab = tab
 
 		COMMAND_SKIP_SCRIPT(                            KEY_%enter%,                PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_SKIP_CINEMATIC(                            KEY_%esc%,                PRESSED,        KEY_%space%,        PRESSED,        OR)
-			
+
 		COMMAND_AI_PAUSE_GAME(                            KEY_%esc%,                PRESSED,        NONE,            NONE,            NONE)
 
 		COMMAND_AI_INTERACT_WITH_PHONE(                    KEY_%c%,                    PRESSED,        NONE,            NONE,            NONE)
@@ -243,7 +219,7 @@ tab = tab
 		COMMAND_KBOARD_EMULATE_LTHUMB_DOWN(                KEY_%s%,                    HELD,            NONE,            NONE,            NONE)
 		COMMAND_KBOARD_EMULATE_LTHUMB_LEFT(                KEY_%a%,                    HELD,            NONE,            NONE,            NONE)
 		COMMAND_KBOARD_EMULATE_LTHUMB_RIGHT(            KEY_%d%,                    HELD,            NONE,            NONE,            NONE)
-			
+
 		COMMAND_PLAYER_JUMP(                            KEY_%space%,                PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_PLAYER_CROUCH(                            KEY_%c%,                    PRESSED,        NONE,            NONE,            NONE)
 		COMMAND_PLAYER_DODGE(                            KEY_%lcontrol%,            PRESSED,        NONE,            NONE,            NONE)
@@ -283,9 +259,9 @@ tab = tab
 		COMMAND_USER_CAM_WEAPONAIM_LEFTRIGHT(            MOUSE_RAW_X,        NONE,            NONE,        NONE,        NONE)
 		COMMAND_USER_CAM_WEAPONAIM_UPDOWN(                MOUSE_RAW_Y,        NONE,            NONE,        NONE,        NONE)
 
-		COMMAND_DEBUGCAMERA_MOVEFORWARDBACK(            KEY_%w%,                NONE,            NONE,        NONE,        NONE) 
-		COMMAND_DEBUGCAMERA_PITCHUPDOWN(                RIGHT_THUMBSTICK_Y,    NONE,            NONE,        NONE,        NONE) 
-		COMMAND_DEBUGCAMERA_HEADLEFTRIGHT(                RIGHT_THUMBSTICK_X,    NONE,            NONE,        NONE,        NONE) 
+		COMMAND_DEBUGCAMERA_MOVEFORWARDBACK(            KEY_%w%,                NONE,            NONE,        NONE,        NONE)
+		COMMAND_DEBUGCAMERA_PITCHUPDOWN(                RIGHT_THUMBSTICK_Y,    NONE,            NONE,        NONE,        NONE)
+		COMMAND_DEBUGCAMERA_HEADLEFTRIGHT(                RIGHT_THUMBSTICK_X,    NONE,            NONE,        NONE,        NONE)
 
 		COMMAND_AI_MOVE_PENDULUM_X(                        RIGHT_THUMBSTICK_X,    NONE,            NONE,        NONE,    NONE)
 		COMMAND_AI_MOVE_PENDULUM_Y(                        RIGHT_THUMBSTICK_Y,    NONE,            NONE,        NONE,    NONE)
@@ -365,7 +341,7 @@ tab = tab
 	{
 		global gamepath
 		filereadline,line,%gamepath%\data\controls\keymap.txt,%line#%
-		
+
 		;where does the keys word start?
 			stringgetpos,linepos,line,KEY,L
 			linepos += 4
@@ -377,10 +353,16 @@ tab = tab
 			stringmid,line,line,0,%lineposend%
 		return %line%
 	}
-	
+
 	ControlGui(x) ;reset the input variable and gui input edit box
 	{
-		setenv,%x%,%x%
 		Guicontrol,,%x%,%x%
 		return
 	}
+
+
+
+ExitFunc()
+{
+	filedelete,%A_Temp%\AutoHotKey-KeysList.pdf
+}
